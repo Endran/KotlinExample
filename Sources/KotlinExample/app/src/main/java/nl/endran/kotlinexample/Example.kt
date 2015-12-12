@@ -7,7 +7,7 @@ import android.view.View
 class Example(val fab: FloatingActionButton) {
 
     fun doMagic() {
-        val message = "Replace with your own action"
-        fab.showSnackBarOnClick(message)
+        val i = 42
+        fab.showSnackBarOnClick(i)
     }
 }
