@@ -13,6 +13,7 @@ local.properties
 
 **/.idea/.name
 **/.idea/compiler.xml
+**/.idea/workspace.xml
 **/.idea/copyright/profiles_settings.xml
 **/.idea/runConfigurations.xml
 **/.idea/encodings.xml
