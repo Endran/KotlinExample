@@ -30,10 +30,12 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testCompile "org.jetbrains.spek:spek:$spek_version"
 
 }
 buildscript {
     ext.kotlin_version = '1.0.0-beta-4589'
+    ext.spek_version = '0.1.189'
     repositories {
         mavenCentral()
     }
@@ -43,4 +45,7 @@ buildscript {
 }
 repositories {
     mavenCentral()
+    maven {
+        url "http://repository.jetbrains.com/all"
+    }
 }
