@@ -1,33 +1,46 @@
 package nl.endran.spekexample
 
-data class Chef(val specialities: List<String>)
+data class Chef(val dishes: List<String>)
 
-class Kitchen(val chefs: List<Chef>) {
+class Kitchen(chefs: List<Chef>) {
 
-    fun getAvailableDishes(): List<String> {
-        if (chefs.isEmpty()) {
-            return emptyList()
-        }
+    companion object {
+        val MINIMUM_CHEFS = 2
+        val FAST_PREPARATION_CHEFS = 3
+        val NORMAL_PREPARATION_TIME = 30
+        val FAST_PREPARATION_TIME = 20
+    }
 
-        val hashMap = hashMapOf<String, Int>()
+    private val dishMap by lazy {
+        val dishMap = hashMapOf<String, Int>()
         chefs.forEach {
-            it.specialities.forEach {
-                val count = hashMap[it] ?: 0
-                hashMap[it] = count + 1
+            it.dishes.forEach {
+                val count = dishMap[it] ?: 0
+                dishMap[it] = count + 1
             }
         }
+        return@lazy dishMap
+    }
 
+    val availableDishes by lazy {
         val availableDishes = arrayListOf<String>()
-        hashMap.forEach {
-            if(it.value>=2){
+        dishMap.forEach {
+            if (it.value >= MINIMUM_CHEFS) {
                 availableDishes.add(it.key)
             }
         }
 
-        return availableDishes
+        return@lazy availableDishes
+    }
+
+    fun preparationTime(dish: String): Int {
+        when (dishMap[dish]) {
+            !in 0..(FAST_PREPARATION_CHEFS - 1) -> return FAST_PREPARATION_TIME
+            !in 0..(MINIMUM_CHEFS - 1) -> return NORMAL_PREPARATION_TIME
+            else -> throw RuntimeException("$dish cannot be prepared")
+        }
     }
 }
-
 
 // We should be able to give a couple of chefs, each with their own speciality
 // When atleast 2 chefs know how to make it, its on the list
