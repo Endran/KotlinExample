@@ -1,4 +1,4 @@
-package nl.endran.kotlinexample
+package nl.endran.demotime
 
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -17,7 +17,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        val example = MyFirstKotlin(fab)
-        example.doMagic()
+
+        val example = Example(fab)
+        example.go();
     }
 }
