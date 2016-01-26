@@ -2,7 +2,7 @@ package nl.endran.spekexample
 
 data class Chef(val dishes: List<String>)
 
-class Kitchen(chefs: List<Chef>) {
+class KotlinKitchen(chefs: List<Chef>)  {
 
     companion object {
         val MINIMUM_CHEFS = 2
@@ -33,7 +33,7 @@ class Kitchen(chefs: List<Chef>) {
         return@lazy availableDishes
     }
 
-    fun preparationTime(dish: String): Int {
+    fun calculatePreparationTime(dish: String): Int {
         when (dishMap[dish]) {
             !in 0..(FAST_PREPARATION_CHEFS - 1) -> return FAST_PREPARATION_TIME
             !in 0..(MINIMUM_CHEFS - 1) -> return NORMAL_PREPARATION_TIME
