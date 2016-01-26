@@ -8,7 +8,6 @@ class KitchenTest : Spek() {
 
     init {
         given("a kitchen without chefs") {
-
             val kitchen = Kitchen(emptyList())
 
             on("asking the list of available dishes") {
@@ -21,11 +20,26 @@ class KitchenTest : Spek() {
         }
 
         val baconSpeciality = listOf("Bacon")
-        given("a kitchen with 3 master chefs that all have $baconSpeciality as a speciality") {
+        given("a kitchen with 2 chefs that both have $baconSpeciality as a speciality") {
             val kitchen = Kitchen(listOf(
-                    Chef(true, baconSpeciality),
-                    Chef(true, baconSpeciality),
-                    Chef(true, baconSpeciality)))
+                    Chef(baconSpeciality),
+                    Chef(baconSpeciality)))
+
+            on("asking the list of available dishes") {
+                val availableDishes = kitchen.getAvailableDishes()
+
+                it("should return $baconSpeciality") {
+                    Assertions.assertThat(availableDishes).isEqualTo(baconSpeciality)
+                }
+            }
+        }
+
+
+        val baconAndFishSpeciality = listOf("Bacon", "Fish")
+        given("a kitchen with a chef with $baconAndFishSpeciality and a chef with $baconSpeciality") {
+            val kitchen = Kitchen(listOf(
+                    Chef(baconAndFishSpeciality),
+                    Chef(baconSpeciality)))
 
             on("asking the list of available dishes") {
                 val availableDishes = kitchen.getAvailableDishes()
