@@ -1,6 +1,7 @@
 package nl.endran.spekexample;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +15,10 @@ public class JavaKitchen implements Kitchen {
     public static int NORMAL_PREPARATION_TIME = 30;
     public static int FAST_PREPARATION_TIME = 20;
 
+    @Nullable
     private Map<String, Integer> dishMap;
+
+    @Nullable
     private List<String> availableDishes;
 
     @NonNull
@@ -24,6 +28,7 @@ public class JavaKitchen implements Kitchen {
         this.chefs = chefs;
     }
 
+    @NonNull
     private Map<String, Integer> getDishMap() {
         if (dishMap == null) {
             dishMap = new HashMap<>();
@@ -41,6 +46,7 @@ public class JavaKitchen implements Kitchen {
         return dishMap;
     }
 
+    @NonNull
     public List<String> getAvailableDishes() {
         if (availableDishes == null) {
             availableDishes = new ArrayList<>();
@@ -56,7 +62,7 @@ public class JavaKitchen implements Kitchen {
     }
 
     @Override
-    public int calculatePreparationTime(final String dish) {
+    public int calculatePreparationTime(final @NonNull String dish) {
         Integer integer = getDishMap().get(dish);
 
         if (integer == null || integer < MINIMUM_CHEFS) {

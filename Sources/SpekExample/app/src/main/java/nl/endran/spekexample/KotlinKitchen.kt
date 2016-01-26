@@ -22,7 +22,7 @@ class KotlinKitchen(chefs: List<Chef>) : Kitchen  {
         return@lazy dishMap
     }
 
-    val availableDishes by lazy {
+    override val availableDishes by lazy {
         val availableDishes = arrayListOf<String>()
         dishMap.forEach {
             if (it.value >= MINIMUM_CHEFS) {
@@ -33,10 +33,6 @@ class KotlinKitchen(chefs: List<Chef>) : Kitchen  {
         return@lazy availableDishes
     }
 
-    override fun getAvailableDishes(): MutableList<String>? {
-        return availableDishes
-    }
-
     override fun calculatePreparationTime(dish: String): Int {
         when (dishMap[dish]) {
             !in 0..(FAST_PREPARATION_CHEFS - 1) -> return FAST_PREPARATION_TIME
@@ -45,6 +41,3 @@ class KotlinKitchen(chefs: List<Chef>) : Kitchen  {
         }
     }
 }
-
-// We should be able to give a couple of chefs, each with their own speciality
-// When atleast 2 chefs know how to make it, its on the list
