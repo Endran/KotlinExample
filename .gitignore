@@ -11,6 +11,8 @@ local.properties
 **/intermediates/*
 **/taskArtifacts/*
 
+**/.idea/libraries/*
+**/.idea/modules/*
 **/.idea/.name
 **/.idea/compiler.xml
 **/.idea/workspace.xml
